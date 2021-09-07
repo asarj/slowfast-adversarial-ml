@@ -90,7 +90,7 @@ python3 tools/run_net.py \
         DATA_LOADER.NUM_WORKERS 2 \ 
         NUM_GPUS 2 \ 
         TEST.BATCH_SIZE 8 \ 
-        |& tee "/home/jovyan/asarjoo/slowfast-adversarial-ml/output_logs/[filename].txt"
+        |& tee "../slowfast-adversarial-ml/output_logs/[filename].txt"
 ```
 
 In our case, we used the `X3D_M` model definition, so our script was
@@ -104,5 +104,5 @@ python3 tools/run_net.py \
         DATA_LOADER.NUM_WORKERS 2 \ 
         NUM_GPUS 2 \ 
         TEST.BATCH_SIZE 8 \ 
-        |& tee "/home/jovyan/asarjoo/slowfast-adversarial-ml/output_logs/test_results_X3DM_trial1.txt"
+        |& tee "../slowfast-adversarial-ml/output_logs/test_results_X3DM_trial1.txt"
 ```
