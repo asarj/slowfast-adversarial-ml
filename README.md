@@ -52,7 +52,7 @@ mkdir ../../../kinetics-400-dataset-files/val/
 python3 download.py ../../../kinetics-400-dataset-files/kinetics400/validate.csv ../../../kinetics-400-dataset-files/val/
 ```
 
-We can use the following command in a new terminal to monitor how many videos are downloaded to the `val` directory. We only wish to download 1500-2200 videos, so we would stop the `download.py` script (ctrl + c) when the number of files in the `val` directory reaches this point
+We can use the following command in a new terminal to monitor how many videos are downloaded to the `val` directory. We only wish to download 1500-2500 videos, so we would stop the `download.py` script (ctrl + c) when the number of files in the `val` directory reaches this point
 ```bash
 cd slowfast-adversarial-ml 
 watch "find ./kinetics-400-dataset-files/val/ -type f | wc -l"
@@ -67,6 +67,8 @@ Once the desired video count is reached, we need to preprocess the videos downlo
 - The path to the root directory containing the downloaded videos (which would be `kinetics-400-dataset-files/{split}/`)
 - The path to the csv used to download the videos in the first place (which would be in `kinetics-400-dataset-files/kinetics400/`)
 - The path to save the preprocessed csv to
+
+
 The script to run for the evaluation is
 ```bash
 cd ../../../
