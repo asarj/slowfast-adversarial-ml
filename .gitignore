@@ -131,3 +131,4 @@ dmypy.json
 # Project-specific Files
 kinetics-400-dataset-files/
 ActivityNet/
+slowfast/

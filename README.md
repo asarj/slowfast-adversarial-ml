@@ -9,8 +9,7 @@ This repo contains all work relating to current research on Facebook's SlowFast 
 ## Setup
 Before doing anything, run the following
 ```bash
-sudo apt-get update
-sudo apt-get install vim xclip ffmpeg -y
+sudo apt-get update -y && sudo apt-get install vim xclip ffmpeg -y
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 python3 -m pip install virtualenv
@@ -54,3 +53,22 @@ watch "find ./kinetics-400-dataset-files/test/ -type f | wc -l"
 Until the desired video count is reached, we can skip ahead to setting up Facebook SlowFast in the meanwhile
 
 ### Setting Up Facebook SlowFast
+To install SlowFast, follow the instructions (most of which are taken from [here](https://github.com/facebookresearch/SlowFast/blob/master/INSTALL.md))
+1. Install dependencies
+```bash
+git clone https://github.com/facebookresearch/slowfast
+cd slowfast/
+virtualenv slowfast_venv
+source slowfast_venv/bin/activate
+pip install -U torch torchvision cython
+pip install -U 'git+https://github.com/facebookresearch/fvcore.git' 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
+git clone https://github.com/facebookresearch/detectron2 detectron2_repo
+pip install -e detectron2_repo
+export PYTHONPATH=path/to/slowfast-adversarial-ml/slowfast:$PYTHONPATH
+```
+2. Build SlowFast
+```bash
+python3 setup.py build develop
+```
+
+## Execution
