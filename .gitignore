@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Project-specific Files
+kinetics-400-dataset-files/
+ActivityNet/
