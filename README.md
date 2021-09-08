@@ -9,7 +9,7 @@ This repo contains all work relating to current research on Facebook's SlowFast 
 ## Setup
 Before doing anything, run the following
 ```bash
-sudo apt-get update -y && sudo apt-get install vim xclip ffmpeg -y
+sudo apt-get update -y && sudo apt-get install vim xclip ffmpeg detox -y
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 python3 -m pip install virtualenv
@@ -60,9 +60,17 @@ watch "find ./kinetics-400-dataset-files/val/ -type f | wc -l"
 Afterward, simply `deactivate` to deactivate the virtual environment.
 
 
-In our evaluation, we downloaded 2500 videos from the validation set.
+In our evaluation, we downloaded 2531 videos from the validation set.
 
-Once the desired video count is reached, we need to preprocess the videos downloaded into a CSV that SlowFast will use to read from during evaluation. I have already made a script that does this, all you will need is the following information:
+Once the desired video count is reached, we need to preprocess the videos downloaded into a CSV that SlowFast will use to read from during evaluation. 
+
+First, we need to clean up the filepaths to the videos to elinimate whitespace, which can be done by running the following:
+```bash
+cd ../../../kinetics-400-dataset-files/val/
+$ for file in *; do mv "$file" `echo $file | tr ' ' '-'` ; done 
+```
+
+Then, we need to map videos to the action classes they correspond to in numerical form. I have already made a script that does this, all you will need is the following information:
 - The type of split we are generating the csv for (either train, val, or test)
 - The path to the root directory containing the downloaded videos (which would be `kinetics-400-dataset-files/{split}/`)
 - The path to the csv used to download the videos in the first place (which would be in `kinetics-400-dataset-files/kinetics400/`)
@@ -71,13 +79,14 @@ Once the desired video count is reached, we need to preprocess the videos downlo
 
 The script to run for the evaluation is
 ```bash
-cd ../../../
+cd ../../
 python3 scripts/build_slowfast_csv.py \
     -split "val" \
     -path_to_videos "./kinetics-400-dataset-files/val/" \
     -path_to_videos_csv "./kinetics-400-dataset-files/kinetics400/validate.csv" \
-    -output_filename "./kinetics-400-dataset-files/val.csv"
+    -output_filename "./kinetics-400-dataset-files/test.csv"
 ```
+We call the output filename test.csv because SlowFast only looks for files that are either `train.csv` or `test.csv`
 
 ### Setting Up Facebook SlowFast
 To install SlowFast, follow the instructions (most of which are taken from [here](https://github.com/facebookresearch/SlowFast/blob/master/INSTALL.md))
@@ -106,7 +115,7 @@ To evaluate this code on the val set, pick an X3D model to use and run the follo
 ```bash
 python3 tools/run_net.py \ 
         --cfg configs/Kinetics/X3D_{model_size}.yaml \ 
-        DATA.PATH_TO_DATA_DIR "../kinetics-400-dataset-files/{split}.csv" \ 
+        DATA.PATH_TO_DATA_DIR "../kinetics-400-dataset-files/" \ 
         DATA.PATH_LABEL_SEPARATOR " " \ 
         DATA.DECODING_BACKEND "pyav" \ 
         TRAIN.ENABLE False \ 
@@ -120,14 +129,20 @@ In our case, we used the `X3D_M` model definition, so our script was
 ```bash
 python3 tools/run_net.py \
         --cfg configs/Kinetics/X3D_M.yaml \
-        DATA.PATH_TO_DATA_DIR "../kinetics-400-dataset-files/val.csv" \
+        DATA.PATH_TO_DATA_DIR "../kinetics-400-dataset-files/" \
         DATA.PATH_LABEL_SEPARATOR " " \
         DATA.DECODING_BACKEND "pyav" \
         TRAIN.ENABLE False \
         DATA_LOADER.NUM_WORKERS 2 \
         NUM_GPUS 2 \
         TEST.BATCH_SIZE 8 \
+        TENSORBOARD.ENABLE True \
         |& tee "../output_logs/test_results_X3DM_trial1.txt"
 ```
 
-Depending on your hardware configuration, SlowFast might crash during model evaluation
+Depending on your hardware configuration, SlowFast might crash during model evaluation, for one of several reasons
+1. If you get an error that looks something like this 
+```bash
+RuntimeError: Failed to fetch video after 10 retries.
+```
+This means that the video was corrupted somehow. The SlowFast docs and the open issues on GitHub don't provide any remedies for this, so it is recommended to delete the file in question and re-run the script
