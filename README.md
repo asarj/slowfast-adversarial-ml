@@ -7,9 +7,15 @@ This repo contains all work relating to current research on Facebook's SlowFast 
 - [Execution](#Execution)
 
 ## Setup
-Before doing anything, run the following
+Note that all work has been done in a Zeblok AI-Workstation outfitted with 2 GPUs, 4 vCPUS, and 100 GB of memory, results may vary depending on your setup
+
+
+Before doing anything (especially if you've recently spun up a clean instance of a JupyterLab workstation or equivalent), run the following
 ```bash
-sudo apt-get update -y && sudo apt-get install vim xclip ffmpeg detox -y
+sudo apt-get update -y 
+sudo apt-get install vim xclip ffmpeg libsm6 libxext6 software-properties-common -y
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+sudo apt-get upgrade libstdc++6 -y
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 python3 -m pip install virtualenv
@@ -20,7 +26,6 @@ git clone git@github.com:asarj/slowfast-adversarial-ml.git
 cd slowfast-adversarial-ml
 ```
 
-Note that all work has been done in a Zeblok AI-Workstation outfitted with 2 GPUs, 4 vCPUS, and 100 GB of memory, results may vary depending on your setup
 
 ### Obtaining the Kinetics-400 dataset
 1. Open a terminal and make a directory to store the kinetics dataset
@@ -46,47 +51,41 @@ source venv/bin/activate
 python3 -m pip install joblib mkl menpo numpy pandas pytz readline setuptools six tk wheel decorator olefile youtube-dl
 ```
 
-We then wish to use the validation set for our tests, so we will download them accordingly
+5. We then wish to use the validation set for our tests, so we will download them accordingly
 ```bash
 mkdir ../../../kinetics-400-dataset-files/val/
 python3 download.py ../../../kinetics-400-dataset-files/kinetics400/validate.csv ../../../kinetics-400-dataset-files/val/
 ```
 
-We can use the following command in a new terminal to monitor how many videos are downloaded to the `val` directory. We only wish to download 1500-2500 videos, so we would stop the `download.py` script (ctrl + c) when the number of files in the `val` directory reaches this point
+We can use the following command in a new terminal to monitor how many videos are downloaded to the `val` directory. We only wish to download 1500-2500 videos (maybe more depending on your disk space), so we would stop the `download.py` script (ctrl + c) when the number of files in the `val` directory reaches this point
 ```bash
 cd slowfast-adversarial-ml 
 watch "find ./kinetics-400-dataset-files/val/ -type f | wc -l"
 ```
-Afterward, simply `deactivate` to deactivate the virtual environment.
 
 
-In our evaluation, we downloaded 2531 videos from the validation set.
+In our evaluation, we downloaded 2098 videos from the validation set.
 
-Once the desired video count is reached, we need to preprocess the videos downloaded into a CSV that SlowFast will use to read from during evaluation. 
+6. Once the desired video count is reached, we need to preprocess the videos downloaded into a CSV that SlowFast will use to read from during evaluation. We use another module from Facebook Research, called [`video-nonlocal-net`](https://github.com/facebookresearch/video-nonlocal-net/blob/master/DATASET.md), to achieve this
 
-First, we need to clean up the filepaths to the videos to elinimate whitespace, which can be done by running the following:
+7. First, we need to clean up the filepaths to the videos to elinimate whitespace, which can be done by running the following:
 ```bash
-cd ../../../kinetics-400-dataset-files/val/
-$ for file in *; do mv "$file" `echo $file | tr ' ' '-'` ; done 
+cd ../../../
+git clone https://github.com/facebookresearch/video-nonlocal-net.git
+python3 video-nonlocal-net/process_data/kinetics/gen_py_list.py 
+mkdir kinetics-400-dataset-files/val_256/
+python3 video-nonlocal-net/process_data/kinetics/downscale_video_joblib.py 
 ```
 
-Then, we need to map videos to the action classes they correspond to in numerical form. I have already made a script that does this, all you will need is the following information:
-- The type of split we are generating the csv for (either train, val, or test)
-- The path to the root directory containing the downloaded videos (which would be `kinetics-400-dataset-files/{split}/`)
-- The path to the csv used to download the videos in the first place (which would be in `kinetics-400-dataset-files/kinetics400/`)
-- The path to save the preprocessed csv to
 
-
-The script to run for the evaluation is
+8. As a result of step 7, we generate a file in `./kinetics-400-dataset-files` called `vallist.txt`, which contains the filepaths to all the videos and the numeric id of each action class it belongs to in a form that is compliant. However, we need to convert this to CSV. I have already made a script that does this, all you will need is the path to `vallist.txt` and run the following script
 ```bash
 cd ../../
 python3 scripts/build_slowfast_csv.py \
-    -split "val" \
-    -path_to_videos "./kinetics-400-dataset-files/val/" \
-    -path_to_videos_csv "./kinetics-400-dataset-files/kinetics400/validate.csv" \
-    -output_filename "./kinetics-400-dataset-files/test.csv"
+    -path "./kinetics-400-dataset-files/vallist.txt"
 ```
-We call the output filename test.csv because SlowFast only looks for files that are either `train.csv` or `test.csv`
+
+9. You will then see two files in the `./kinetics-400-dataset-files/` directory, `test_raw.csv`, which contains the paths and action classes for the raw `val` directory, and `test_256.csv`, which contains the paths and action classes for the preprocessed `val_256` directory. You can rename either or as `test.csv` to use with SlowFast, but it's preferred to rename `test_256.csv` because the videos are resized to the short edge size of 256, which helps in evaluating faster. We rename the files because SlowFast only looks for files that are either `train.csv` or `test.csv`
 
 ### Setting Up Facebook SlowFast
 To install SlowFast, follow the instructions (most of which are taken from [here](https://github.com/facebookresearch/SlowFast/blob/master/INSTALL.md))
@@ -94,14 +93,19 @@ To install SlowFast, follow the instructions (most of which are taken from [here
 ```bash
 git clone https://github.com/facebookresearch/slowfast
 cd slowfast/
-virtualenv slowfast_venv
-source slowfast_venv/bin/activate
-pip install -U torch torchvision cython psutil av opencv-python pandas pillow simplejson iopath moviepy pytorchvideo sklearn
-pip install -U 'git+https://github.com/facebookresearch/fvcore.git' 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
-git clone https://github.com/facebookresearch/detectron2 detectron2_repo
+conda create -n slowfast_venv python=3.7 -y
+source activate slowfast_venv
+pip install light-the-torch
+ltt install torch torchvision
+pip3 install pytorchvideo
+conda install -c conda-forge -c fvcore -c iopath fvcore=0.1.4 iopath -y
+conda install -c conda-forge av psutil -y
+pip3 install 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
+pip3 install cython psutil sklearn simplejson opencv-python pillow
 pip install -e detectron2_repo
-export PYTHONPATH=path/to/slowfast-adversarial-ml/slowfast:$PYTHONPATH
-```
+``` 
+
+If `detectron2_repo` was already installed and has a file called `detectron2.egg-info` inside it, delete that file and follow the last step again
 
 2. Build SlowFast
 ```bash
@@ -119,11 +123,12 @@ python3 tools/run_net.py \
         DATA.PATH_LABEL_SEPARATOR " " \ 
         DATA.DECODING_BACKEND "pyav" \ 
         TRAIN.ENABLE False \ 
-        DATA_LOADER.NUM_WORKERS 2 \ 
-        NUM_GPUS 2 \ 
-        TEST.BATCH_SIZE 8 \ 
+        DATA_LOADER.NUM_WORKERS 0 \ 
+        NUM_GPUS 1 \ 
+        TEST.BATCH_SIZE 16 \ 
         |& tee "../output_logs/[filename].txt"
 ```
+We specify `DATA_LOADER.NUM_WORKERS` to be `0` and `NUM_GPUS` to be `1` despite having more resources because multithreading errors were thrown during model evaluation (which are not currently known how to solve).
 
 In our case, we used the `X3D_M` model definition, so our script was
 ```bash
@@ -133,9 +138,9 @@ python3 tools/run_net.py \
         DATA.PATH_LABEL_SEPARATOR " " \
         DATA.DECODING_BACKEND "pyav" \
         TRAIN.ENABLE False \
-        DATA_LOADER.NUM_WORKERS 2 \
-        NUM_GPUS 2 \
-        TEST.BATCH_SIZE 8 \
+        DATA_LOADER.NUM_WORKERS 0 \
+        NUM_GPUS 1 \
+        TEST.BATCH_SIZE 16 \
         TENSORBOARD.ENABLE True \
         |& tee "../output_logs/test_results_X3DM_trial1.txt"
 ```
@@ -143,6 +148,9 @@ python3 tools/run_net.py \
 Depending on your hardware configuration, SlowFast might crash during model evaluation, for one of several reasons
 1. If you get an error that looks something like this 
 ```bash
+```
+followed by something like this
+```bash
 RuntimeError: Failed to fetch video after 10 retries.
 ```
-This means that the video was corrupted somehow. The SlowFast docs and the open issues on GitHub don't provide any remedies for this, so it is recommended to delete the file in question and re-run the script
+This means that the video was corrupted somehow. The SlowFast docs and the open issues on GitHub don't provide any remedies for this, so it is recommended to delete the file in question from the csv and re-run the script
