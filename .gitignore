@@ -130,5 +130,4 @@ dmypy.json
 
 # Project-specific Files
 kinetics-400-dataset-files/
-ActivityNet/
-slowfast/
+ActivityNet/Crawler/Kinetics/venv/

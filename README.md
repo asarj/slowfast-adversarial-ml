@@ -147,10 +147,8 @@ python3 tools/run_net.py \
 
 Depending on your hardware configuration, SlowFast might crash during model evaluation, for one of several reasons
 1. If you get an error that looks something like this 
-```bash
-```
-followed by something like this
+
 ```bash
 RuntimeError: Failed to fetch video after 10 retries.
 ```
-This means that the video was corrupted somehow. The SlowFast docs and the open issues on GitHub don't provide any remedies for this, so it is recommended to delete the file in question from the csv and re-run the script
+This means that the video was corrupted somehow. The SlowFast docs and the open issues on GitHub don't provide any remedies for this, so it is recommended to delete the file in question from the csv(s) and re-run the script
