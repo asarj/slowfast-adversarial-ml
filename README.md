@@ -43,9 +43,7 @@ tar -xvf "kinetics400.tar.gz"
 ```
 4. Since we are only interested in evaluating models, we will download from the `validate.csv` file. We use the validation set instead of the test set because the original [SlowFast X3D paper](https://arxiv.org/pdf/2004.04730.pdf) evaluates on the validation set as well. Note that we will not download all files, as it is 450 GB total (and Zeblok only gives us 100 GB to work with). To do this, follow the corresponding commands
 ```bash
-cd ../
-git clone https://github.com/activitynet/ActivityNet.git
-cd ActivityNet/Crawler/Kinetics
+cd ../ActivityNet/Crawler/Kinetics
 virtualenv venv
 source venv/bin/activate
 python3 -m pip install joblib mkl menpo numpy pandas pytz readline setuptools six tk wheel decorator olefile youtube-dl
@@ -71,14 +69,13 @@ In our evaluation, we downloaded 2098 videos from the validation set.
 7. First, we need to clean up the filepaths to the videos to elinimate whitespace, which can be done by running the following:
 ```bash
 cd ../../../
-git clone https://github.com/facebookresearch/video-nonlocal-net.git
 python3 video-nonlocal-net/process_data/kinetics/gen_py_list.py 
 mkdir kinetics-400-dataset-files/val_256/
 python3 video-nonlocal-net/process_data/kinetics/downscale_video_joblib.py 
 ```
 
 
-8. As a result of step 7, we generate a file in `./kinetics-400-dataset-files` called `vallist.txt`, which contains the filepaths to all the videos and the numeric id of each action class it belongs to in a form that is compliant. However, we need to convert this to CSV. I have already made a script that does this, all you will need is the path to `vallist.txt` and run the following script
+8. As a result of step 7, we generate a file in `./kinetics-400-dataset-files` called `vallist.txt`, which contains the filepaths to all the videos and the numeric id of each action class it belongs to in a form that is compliant. However, we need to convert this to CSV. I have already made a script that does this, and also shuffles the rows in the dataframe to help in the evaluation process, all you will need is the path to `vallist.txt` and run the following script
 ```bash
 cd ../../
 python3 scripts/build_slowfast_csv.py \
@@ -102,6 +99,7 @@ conda install -c conda-forge -c fvcore -c iopath fvcore=0.1.4 iopath -y
 conda install -c conda-forge av psutil -y
 pip3 install 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
 pip3 install cython psutil sklearn simplejson opencv-python pillow
+git clone https://github.com/facebookresearch/detectron2 detectron2_repo
 pip install -e detectron2_repo
 ``` 
 
@@ -152,3 +150,7 @@ Depending on your hardware configuration, SlowFast might crash during model eval
 RuntimeError: Failed to fetch video after 10 retries.
 ```
 This means that the video was corrupted somehow. The SlowFast docs and the open issues on GitHub don't provide any remedies for this, so it is recommended to delete the file in question from the csv(s) and re-run the script
+
+2. In the model evaluation, the `top1_acc` field is always 0 for each epoch
+
+This means that there are no pretrained models for SlowFast to load from. You will need to download each of them from [here](https://github.com/asarj/ActionRecognitionAdversarialML/blob/master/slowfast/MODEL_ZOO.md) via `wget` and modify the config files for each X3D model in the `TEST.CHECKPOINT_PATH` attribute to point the url to this.

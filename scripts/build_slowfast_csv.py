@@ -9,7 +9,7 @@ def main(path):
     print(f"Converting {path} to csv...")
     df = pd.read_csv(path, sep=" ", header=None)
     df.columns = ["url", "class"]
-    
+    df = df.sample(frac=1).reset_index(drop=True)
     df["url"] = "." + df["url"]
     # Save everything
     print(f"Saving the raw csv as test_raw.csv...")
