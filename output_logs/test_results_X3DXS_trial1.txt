@@ -1,0 +1,1150 @@
+Please update your PyTorchVideo to latest master
+Please update your PyTorchVideo to latest master
+[09/08 16:35:08][INFO] test_net.py: 157: Test with config:
+[09/08 16:35:08][INFO] test_net.py: 158: AUG:
+  AA_TYPE: rand-m9-mstd0.5-inc1
+  COLOR_JITTER: 0.4
+  ENABLE: False
+  INTERPOLATION: bicubic
+  NUM_SAMPLE: 1
+  RE_COUNT: 1
+  RE_MODE: pixel
+  RE_PROB: 0.25
+  RE_SPLIT: False
+AVA:
+  ANNOTATION_DIR: /mnt/vol/gfsai-flash3-east/ai-group/users/haoqifan/ava/frame_list/
+  BGR: False
+  DETECTION_SCORE_THRESH: 0.9
+  EXCLUSION_FILE: ava_val_excluded_timestamps_v2.2.csv
+  FRAME_DIR: /mnt/fair-flash3-east/ava_trainval_frames.img/
+  FRAME_LIST_DIR: /mnt/vol/gfsai-flash3-east/ai-group/users/haoqifan/ava/frame_list/
+  FULL_TEST_ON_VAL: False
+  GROUNDTRUTH_FILE: ava_val_v2.2.csv
+  IMG_PROC_BACKEND: cv2
+  LABEL_MAP_FILE: ava_action_list_v2.2_for_activitynet_2019.pbtxt
+  TEST_FORCE_FLIP: False
+  TEST_LISTS: ['val.csv']
+  TEST_PREDICT_BOX_LISTS: ['ava_val_predicted_boxes.csv']
+  TRAIN_GT_BOX_LISTS: ['ava_train_v2.2.csv']
+  TRAIN_LISTS: ['train.csv']
+  TRAIN_PCA_JITTER_ONLY: True
+  TRAIN_PREDICT_BOX_LISTS: []
+  TRAIN_USE_COLOR_AUGMENTATION: False
+BENCHMARK:
+  LOG_PERIOD: 100
+  NUM_EPOCHS: 5
+  SHUFFLE: True
+BN:
+  NORM_TYPE: batchnorm
+  NUM_BATCHES_PRECISE: 200
+  NUM_SPLITS: 1
+  NUM_SYNC_DEVICES: 1
+  USE_PRECISE_STATS: True
+  WEIGHT_DECAY: 0.0
+DATA:
+  DECODING_BACKEND: pyav
+  ENSEMBLE_METHOD: sum
+  INPUT_CHANNEL_NUM: [3]
+  INV_UNIFORM_SAMPLE: False
+  MEAN: [0.45, 0.45, 0.45]
+  MULTI_LABEL: False
+  NUM_FRAMES: 4
+  PATH_LABEL_SEPARATOR:  
+  PATH_PREFIX: 
+  PATH_TO_DATA_DIR: ../kinetics-400-dataset-files/
+  PATH_TO_PRELOAD_IMDB: 
+  RANDOM_FLIP: True
+  REVERSE_INPUT_CHANNEL: False
+  SAMPLING_RATE: 12
+  STD: [0.225, 0.225, 0.225]
+  TARGET_FPS: 30
+  TEST_CROP_SIZE: 182
+  TRAIN_CROP_SIZE: 160
+  TRAIN_JITTER_ASPECT_RELATIVE: []
+  TRAIN_JITTER_MOTION_SHIFT: False
+  TRAIN_JITTER_SCALES: [182, 228]
+  TRAIN_JITTER_SCALES_RELATIVE: []
+  TRAIN_PCA_EIGVAL: [0.225, 0.224, 0.229]
+  TRAIN_PCA_EIGVEC: [[-0.5675, 0.7192, 0.4009], [-0.5808, -0.0045, -0.814], [-0.5836, -0.6948, 0.4203]]
+  USE_OFFSET_SAMPLING: False
+DATA_LOADER:
+  ENABLE_MULTI_THREAD_DECODE: False
+  NUM_WORKERS: 0
+  PIN_MEMORY: True
+DEMO:
+  BUFFER_SIZE: 0
+  CLIP_VIS_SIZE: 10
+  COMMON_CLASS_NAMES: ['watch (a person)', 'talk to (e.g., self, a person, a group)', 'listen to (a person)', 'touch (an object)', 'carry/hold (an object)', 'walk', 'sit', 'lie/sleep', 'bend/bow (at the waist)']
+  COMMON_CLASS_THRES: 0.7
+  DETECTRON2_CFG: COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml
+  DETECTRON2_THRESH: 0.9
+  DETECTRON2_WEIGHTS: detectron2://COCO-Detection/faster_rcnn_R_50_FPN_3x/137849458/model_final_280758.pkl
+  DISPLAY_HEIGHT: 0
+  DISPLAY_WIDTH: 0
+  ENABLE: False
+  FPS: 30
+  GT_BOXES: 
+  INPUT_FORMAT: BGR
+  INPUT_VIDEO: 
+  LABEL_FILE_PATH: 
+  NUM_CLIPS_SKIP: 0
+  NUM_VIS_INSTANCES: 2
+  OUTPUT_FILE: 
+  OUTPUT_FPS: -1
+  PREDS_BOXES: 
+  SLOWMO: 1
+  STARTING_SECOND: 900
+  THREAD_ENABLE: False
+  UNCOMMON_CLASS_THRES: 0.3
+  VIS_MODE: thres
+  WEBCAM: -1
+DETECTION:
+  ALIGNED: True
+  ENABLE: False
+  ROI_XFORM_RESOLUTION: 7
+  SPATIAL_SCALE_FACTOR: 16
+DIST_BACKEND: nccl
+LOG_MODEL_INFO: True
+LOG_PERIOD: 10
+MIXUP:
+  ALPHA: 0.8
+  CUTMIX_ALPHA: 1.0
+  ENABLE: False
+  LABEL_SMOOTH_VALUE: 0.1
+  PROB: 1.0
+  SWITCH_PROB: 0.5
+MODEL:
+  ARCH: x3d
+  DROPCONNECT_RATE: 0.0
+  DROPOUT_RATE: 0.5
+  FC_INIT_STD: 0.01
+  HEAD_ACT: softmax
+  LOSS_FUNC: cross_entropy
+  MODEL_NAME: X3D
+  MULTI_PATHWAY_ARCH: ['slowfast']
+  NUM_CLASSES: 400
+  SINGLE_PATHWAY_ARCH: ['2d', 'c2d', 'i3d', 'slow', 'x3d', 'mvit']
+MULTIGRID:
+  BN_BASE_SIZE: 8
+  DEFAULT_B: 0
+  DEFAULT_S: 0
+  DEFAULT_T: 0
+  EPOCH_FACTOR: 1.5
+  EVAL_FREQ: 3
+  LONG_CYCLE: False
+  LONG_CYCLE_FACTORS: [(0.25, 0.7071067811865476), (0.5, 0.7071067811865476), (0.5, 1), (1, 1)]
+  LONG_CYCLE_SAMPLING_RATE: 0
+  SHORT_CYCLE: False
+  SHORT_CYCLE_FACTORS: [0.5, 0.7071067811865476]
+MVIT:
+  CLS_EMBED_ON: True
+  DEPTH: 16
+  DIM_MUL: []
+  DROPOUT_RATE: 0.0
+  DROPPATH_RATE: 0.1
+  EMBED_DIM: 96
+  HEAD_MUL: []
+  MLP_RATIO: 4.0
+  MODE: conv
+  NORM: layernorm
+  NORM_STEM: False
+  NUM_HEADS: 1
+  PATCH_2D: False
+  PATCH_KERNEL: [3, 7, 7]
+  PATCH_PADDING: [2, 4, 4]
+  PATCH_STRIDE: [2, 4, 4]
+  POOL_FIRST: False
+  POOL_KVQ_KERNEL: None
+  POOL_KV_STRIDE: None
+  POOL_KV_STRIDE_ADAPTIVE: None
+  POOL_Q_STRIDE: []
+  QKV_BIAS: True
+  SEP_POS_EMBED: False
+  ZERO_DECAY_POS_CLS: True
+NONLOCAL:
+  GROUP: [[1], [1], [1], [1]]
+  INSTANTIATION: dot_product
+  LOCATION: [[[]], [[]], [[]], [[]]]
+  POOL: [[[1, 2, 2], [1, 2, 2]], [[1, 2, 2], [1, 2, 2]], [[1, 2, 2], [1, 2, 2]], [[1, 2, 2], [1, 2, 2]]]
+NUM_GPUS: 1
+NUM_SHARDS: 1
+OUTPUT_DIR: .
+RESNET:
+  DEPTH: 50
+  INPLACE_RELU: True
+  NUM_BLOCK_TEMP_KERNEL: [[3], [4], [6], [3]]
+  NUM_GROUPS: 1
+  SPATIAL_DILATIONS: [[1], [1], [1], [1]]
+  SPATIAL_STRIDES: [[1], [2], [2], [2]]
+  STRIDE_1X1: False
+  TRANS_FUNC: x3d_transform
+  WIDTH_PER_GROUP: 64
+  ZERO_INIT_FINAL_BN: True
+RNG_SEED: 0
+SHARD_ID: 0
+SLOWFAST:
+  ALPHA: 8
+  BETA_INV: 8
+  FUSION_CONV_CHANNEL_RATIO: 2
+  FUSION_KERNEL_SZ: 5
+SOLVER:
+  BASE_LR: 0.1
+  BASE_LR_SCALE_NUM_SHARDS: True
+  CLIP_GRAD_L2NORM: None
+  CLIP_GRAD_VAL: None
+  COSINE_AFTER_WARMUP: False
+  COSINE_END_LR: 0.0
+  DAMPENING: 0.0
+  GAMMA: 0.1
+  LRS: []
+  LR_POLICY: cosine
+  MAX_EPOCH: 300
+  MOMENTUM: 0.9
+  NESTEROV: True
+  OPTIMIZING_METHOD: sgd
+  STEPS: []
+  STEP_SIZE: 1
+  WARMUP_EPOCHS: 35.0
+  WARMUP_FACTOR: 0.1
+  WARMUP_START_LR: 0.01
+  WEIGHT_DECAY: 5e-05
+  ZERO_WD_1D_PARAM: False
+TENSORBOARD:
+  CATEGORIES_PATH: 
+  CLASS_NAMES_PATH: 
+  CONFUSION_MATRIX:
+    ENABLE: False
+    FIGSIZE: [8, 8]
+    SUBSET_PATH: 
+  ENABLE: True
+  HISTOGRAM:
+    ENABLE: False
+    FIGSIZE: [8, 8]
+    SUBSET_PATH: 
+    TOPK: 10
+  LOG_DIR: 
+  MODEL_VIS:
+    ACTIVATIONS: False
+    COLORMAP: Pastel2
+    ENABLE: False
+    GRAD_CAM:
+      COLORMAP: viridis
+      ENABLE: True
+      LAYER_LIST: []
+      USE_TRUE_LABEL: False
+    INPUT_VIDEO: False
+    LAYER_LIST: []
+    MODEL_WEIGHTS: False
+    TOPK_PREDS: 1
+  PREDICTIONS_PATH: 
+  WRONG_PRED_VIS:
+    ENABLE: False
+    SUBSET_PATH: 
+    TAG: Incorrectly classified videos.
+TEST:
+  BATCH_SIZE: 16
+  CHECKPOINT_FILE_PATH: 
+  CHECKPOINT_TYPE: pytorch
+  DATASET: kinetics
+  ENABLE: True
+  NUM_ENSEMBLE_VIEWS: 10
+  NUM_SPATIAL_CROPS: 3
+  SAVE_RESULTS_PATH: 
+TRAIN:
+  AUTO_RESUME: True
+  BATCH_SIZE: 128
+  CHECKPOINT_CLEAR_NAME_PATTERN: ()
+  CHECKPOINT_EPOCH_RESET: False
+  CHECKPOINT_FILE_PATH: 
+  CHECKPOINT_INFLATE: False
+  CHECKPOINT_PERIOD: 10
+  CHECKPOINT_TYPE: pytorch
+  DATASET: kinetics
+  ENABLE: False
+  EVAL_PERIOD: 10
+  MIXED_PRECISION: False
+X3D:
+  BN_LIN5: False
+  BOTTLENECK_FACTOR: 2.25
+  CHANNELWISE_3x3x3: True
+  DEPTH_FACTOR: 2.2
+  DIM_C1: 12
+  DIM_C5: 2048
+  SCALE_RES2: False
+  WIDTH_FACTOR: 2.0
+[09/08 16:35:16][INFO] misc.py: 183: Model:
+X3D(
+  (s1): VideoModelStem(
+    (pathway0_stem): X3DStem(
+      (conv_xy): Conv3d(3, 24, kernel_size=(1, 3, 3), stride=(1, 2, 2), padding=(0, 1, 1), bias=False)
+      (conv): Conv3d(24, 24, kernel_size=(5, 1, 1), stride=(1, 1, 1), padding=(2, 0, 0), groups=24, bias=False)
+      (bn): BatchNorm3d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (s2): ResStage(
+    (pathway0_res0): ResBlock(
+      (branch1): Conv3d(24, 24, kernel_size=(1, 1, 1), stride=(1, 2, 2), bias=False)
+      (branch1_bn): BatchNorm3d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (branch2): X3DTransform(
+        (a): Conv3d(24, 54, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(54, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(54, 54, kernel_size=(3, 3, 3), stride=(1, 2, 2), padding=(1, 1, 1), groups=54, bias=False)
+        (b_bn): BatchNorm3d(54, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (se): SE(
+          (avg_pool): AdaptiveAvgPool3d(output_size=(1, 1, 1))
+          (fc1): Conv3d(54, 8, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc1_act): ReLU()
+          (fc2): Conv3d(8, 54, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc2_sig): Sigmoid()
+        )
+        (b_relu): Swish()
+        (c): Conv3d(54, 24, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (pathway0_res1): ResBlock(
+      (branch2): X3DTransform(
+        (a): Conv3d(24, 54, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(54, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(54, 54, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=54, bias=False)
+        (b_bn): BatchNorm3d(54, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (b_relu): Swish()
+        (c): Conv3d(54, 24, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (pathway0_res2): ResBlock(
+      (branch2): X3DTransform(
+        (a): Conv3d(24, 54, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(54, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(54, 54, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=54, bias=False)
+        (b_bn): BatchNorm3d(54, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (se): SE(
+          (avg_pool): AdaptiveAvgPool3d(output_size=(1, 1, 1))
+          (fc1): Conv3d(54, 8, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc1_act): ReLU()
+          (fc2): Conv3d(8, 54, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc2_sig): Sigmoid()
+        )
+        (b_relu): Swish()
+        (c): Conv3d(54, 24, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (s3): ResStage(
+    (pathway0_res0): ResBlock(
+      (branch1): Conv3d(24, 48, kernel_size=(1, 1, 1), stride=(1, 2, 2), bias=False)
+      (branch1_bn): BatchNorm3d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (branch2): X3DTransform(
+        (a): Conv3d(24, 108, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(108, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(108, 108, kernel_size=(3, 3, 3), stride=(1, 2, 2), padding=(1, 1, 1), groups=108, bias=False)
+        (b_bn): BatchNorm3d(108, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (se): SE(
+          (avg_pool): AdaptiveAvgPool3d(output_size=(1, 1, 1))
+          (fc1): Conv3d(108, 8, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc1_act): ReLU()
+          (fc2): Conv3d(8, 108, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc2_sig): Sigmoid()
+        )
+        (b_relu): Swish()
+        (c): Conv3d(108, 48, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (pathway0_res1): ResBlock(
+      (branch2): X3DTransform(
+        (a): Conv3d(48, 108, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(108, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(108, 108, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=108, bias=False)
+        (b_bn): BatchNorm3d(108, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (b_relu): Swish()
+        (c): Conv3d(108, 48, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (pathway0_res2): ResBlock(
+      (branch2): X3DTransform(
+        (a): Conv3d(48, 108, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(108, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(108, 108, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=108, bias=False)
+        (b_bn): BatchNorm3d(108, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (se): SE(
+          (avg_pool): AdaptiveAvgPool3d(output_size=(1, 1, 1))
+          (fc1): Conv3d(108, 8, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc1_act): ReLU()
+          (fc2): Conv3d(8, 108, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc2_sig): Sigmoid()
+        )
+        (b_relu): Swish()
+        (c): Conv3d(108, 48, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (pathway0_res3): ResBlock(
+      (branch2): X3DTransform(
+        (a): Conv3d(48, 108, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(108, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(108, 108, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=108, bias=False)
+        (b_bn): BatchNorm3d(108, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (b_relu): Swish()
+        (c): Conv3d(108, 48, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (pathway0_res4): ResBlock(
+      (branch2): X3DTransform(
+        (a): Conv3d(48, 108, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(108, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(108, 108, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=108, bias=False)
+        (b_bn): BatchNorm3d(108, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (se): SE(
+          (avg_pool): AdaptiveAvgPool3d(output_size=(1, 1, 1))
+          (fc1): Conv3d(108, 8, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc1_act): ReLU()
+          (fc2): Conv3d(8, 108, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc2_sig): Sigmoid()
+        )
+        (b_relu): Swish()
+        (c): Conv3d(108, 48, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (s4): ResStage(
+    (pathway0_res0): ResBlock(
+      (branch1): Conv3d(48, 96, kernel_size=(1, 1, 1), stride=(1, 2, 2), bias=False)
+      (branch1_bn): BatchNorm3d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (branch2): X3DTransform(
+        (a): Conv3d(48, 216, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(216, 216, kernel_size=(3, 3, 3), stride=(1, 2, 2), padding=(1, 1, 1), groups=216, bias=False)
+        (b_bn): BatchNorm3d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (se): SE(
+          (avg_pool): AdaptiveAvgPool3d(output_size=(1, 1, 1))
+          (fc1): Conv3d(216, 16, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc1_act): ReLU()
+          (fc2): Conv3d(16, 216, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc2_sig): Sigmoid()
+        )
+        (b_relu): Swish()
+        (c): Conv3d(216, 96, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (pathway0_res1): ResBlock(
+      (branch2): X3DTransform(
+        (a): Conv3d(96, 216, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(216, 216, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=216, bias=False)
+        (b_bn): BatchNorm3d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (b_relu): Swish()
+        (c): Conv3d(216, 96, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (pathway0_res2): ResBlock(
+      (branch2): X3DTransform(
+        (a): Conv3d(96, 216, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(216, 216, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=216, bias=False)
+        (b_bn): BatchNorm3d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (se): SE(
+          (avg_pool): AdaptiveAvgPool3d(output_size=(1, 1, 1))
+          (fc1): Conv3d(216, 16, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc1_act): ReLU()
+          (fc2): Conv3d(16, 216, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc2_sig): Sigmoid()
+        )
+        (b_relu): Swish()
+        (c): Conv3d(216, 96, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (pathway0_res3): ResBlock(
+      (branch2): X3DTransform(
+        (a): Conv3d(96, 216, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(216, 216, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=216, bias=False)
+        (b_bn): BatchNorm3d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (b_relu): Swish()
+        (c): Conv3d(216, 96, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (pathway0_res4): ResBlock(
+      (branch2): X3DTransform(
+        (a): Conv3d(96, 216, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(216, 216, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=216, bias=False)
+        (b_bn): BatchNorm3d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (se): SE(
+          (avg_pool): AdaptiveAvgPool3d(output_size=(1, 1, 1))
+          (fc1): Conv3d(216, 16, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc1_act): ReLU()
+          (fc2): Conv3d(16, 216, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc2_sig): Sigmoid()
+        )
+        (b_relu): Swish()
+        (c): Conv3d(216, 96, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (pathway0_res5): ResBlock(
+      (branch2): X3DTransform(
+        (a): Conv3d(96, 216, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(216, 216, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=216, bias=False)
+        (b_bn): BatchNorm3d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (b_relu): Swish()
+        (c): Conv3d(216, 96, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (pathway0_res6): ResBlock(
+      (branch2): X3DTransform(
+        (a): Conv3d(96, 216, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(216, 216, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=216, bias=False)
+        (b_bn): BatchNorm3d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (se): SE(
+          (avg_pool): AdaptiveAvgPool3d(output_size=(1, 1, 1))
+          (fc1): Conv3d(216, 16, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc1_act): ReLU()
+          (fc2): Conv3d(16, 216, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc2_sig): Sigmoid()
+        )
+        (b_relu): Swish()
+        (c): Conv3d(216, 96, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (pathway0_res7): ResBlock(
+      (branch2): X3DTransform(
+        (a): Conv3d(96, 216, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(216, 216, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=216, bias=False)
+        (b_bn): BatchNorm3d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (b_relu): Swish()
+        (c): Conv3d(216, 96, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (pathway0_res8): ResBlock(
+      (branch2): X3DTransform(
+        (a): Conv3d(96, 216, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(216, 216, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=216, bias=False)
+        (b_bn): BatchNorm3d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (se): SE(
+          (avg_pool): AdaptiveAvgPool3d(output_size=(1, 1, 1))
+          (fc1): Conv3d(216, 16, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc1_act): ReLU()
+          (fc2): Conv3d(16, 216, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc2_sig): Sigmoid()
+        )
+        (b_relu): Swish()
+        (c): Conv3d(216, 96, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (pathway0_res9): ResBlock(
+      (branch2): X3DTransform(
+        (a): Conv3d(96, 216, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(216, 216, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=216, bias=False)
+        (b_bn): BatchNorm3d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (b_relu): Swish()
+        (c): Conv3d(216, 96, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (pathway0_res10): ResBlock(
+      (branch2): X3DTransform(
+        (a): Conv3d(96, 216, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(216, 216, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=216, bias=False)
+        (b_bn): BatchNorm3d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (se): SE(
+          (avg_pool): AdaptiveAvgPool3d(output_size=(1, 1, 1))
+          (fc1): Conv3d(216, 16, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc1_act): ReLU()
+          (fc2): Conv3d(16, 216, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc2_sig): Sigmoid()
+        )
+        (b_relu): Swish()
+        (c): Conv3d(216, 96, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (s5): ResStage(
+    (pathway0_res0): ResBlock(
+      (branch1): Conv3d(96, 192, kernel_size=(1, 1, 1), stride=(1, 2, 2), bias=False)
+      (branch1_bn): BatchNorm3d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (branch2): X3DTransform(
+        (a): Conv3d(96, 432, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(432, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(432, 432, kernel_size=(3, 3, 3), stride=(1, 2, 2), padding=(1, 1, 1), groups=432, bias=False)
+        (b_bn): BatchNorm3d(432, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (se): SE(
+          (avg_pool): AdaptiveAvgPool3d(output_size=(1, 1, 1))
+          (fc1): Conv3d(432, 32, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc1_act): ReLU()
+          (fc2): Conv3d(32, 432, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc2_sig): Sigmoid()
+        )
+        (b_relu): Swish()
+        (c): Conv3d(432, 192, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (pathway0_res1): ResBlock(
+      (branch2): X3DTransform(
+        (a): Conv3d(192, 432, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(432, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(432, 432, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=432, bias=False)
+        (b_bn): BatchNorm3d(432, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (b_relu): Swish()
+        (c): Conv3d(432, 192, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (pathway0_res2): ResBlock(
+      (branch2): X3DTransform(
+        (a): Conv3d(192, 432, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(432, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(432, 432, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=432, bias=False)
+        (b_bn): BatchNorm3d(432, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (se): SE(
+          (avg_pool): AdaptiveAvgPool3d(output_size=(1, 1, 1))
+          (fc1): Conv3d(432, 32, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc1_act): ReLU()
+          (fc2): Conv3d(32, 432, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc2_sig): Sigmoid()
+        )
+        (b_relu): Swish()
+        (c): Conv3d(432, 192, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (pathway0_res3): ResBlock(
+      (branch2): X3DTransform(
+        (a): Conv3d(192, 432, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(432, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(432, 432, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=432, bias=False)
+        (b_bn): BatchNorm3d(432, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (b_relu): Swish()
+        (c): Conv3d(432, 192, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (pathway0_res4): ResBlock(
+      (branch2): X3DTransform(
+        (a): Conv3d(192, 432, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(432, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(432, 432, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=432, bias=False)
+        (b_bn): BatchNorm3d(432, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (se): SE(
+          (avg_pool): AdaptiveAvgPool3d(output_size=(1, 1, 1))
+          (fc1): Conv3d(432, 32, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc1_act): ReLU()
+          (fc2): Conv3d(32, 432, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc2_sig): Sigmoid()
+        )
+        (b_relu): Swish()
+        (c): Conv3d(432, 192, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (pathway0_res5): ResBlock(
+      (branch2): X3DTransform(
+        (a): Conv3d(192, 432, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(432, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(432, 432, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=432, bias=False)
+        (b_bn): BatchNorm3d(432, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (b_relu): Swish()
+        (c): Conv3d(432, 192, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (pathway0_res6): ResBlock(
+      (branch2): X3DTransform(
+        (a): Conv3d(192, 432, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (a_bn): BatchNorm3d(432, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (a_relu): ReLU(inplace=True)
+        (b): Conv3d(432, 432, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=432, bias=False)
+        (b_bn): BatchNorm3d(432, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (se): SE(
+          (avg_pool): AdaptiveAvgPool3d(output_size=(1, 1, 1))
+          (fc1): Conv3d(432, 32, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc1_act): ReLU()
+          (fc2): Conv3d(32, 432, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+          (fc2_sig): Sigmoid()
+        )
+        (b_relu): Swish()
+        (c): Conv3d(432, 192, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (c_bn): BatchNorm3d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (head): X3DHead(
+    (conv_5): Conv3d(192, 432, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+    (conv_5_bn): BatchNorm3d(432, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (conv_5_relu): ReLU(inplace=True)
+    (avg_pool): AvgPool3d(kernel_size=[4, 5, 5], stride=1, padding=0)
+    (lin_5): Conv3d(432, 2048, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+    (lin_5_relu): ReLU(inplace=True)
+    (dropout): Dropout(p=0.5, inplace=False)
+    (projection): Linear(in_features=2048, out_features=400, bias=True)
+    (act): Softmax(dim=4)
+  )
+)
+[09/08 16:35:16][INFO] misc.py: 184: Params: 3,794,322
+[09/08 16:35:16][INFO] misc.py: 185: Mem: 0.014384746551513672 MB
+[09/08 16:35:16][WARNING] jit_analysis.py: 490: Unsupported operator aten::adaptive_avg_pool3d encountered 15 time(s)
+[09/08 16:35:16][WARNING] jit_analysis.py: 490: Unsupported operator aten::sigmoid encountered 15 time(s)
+[09/08 16:35:16][WARNING] jit_analysis.py: 490: Unsupported operator aten::mul encountered 15 time(s)
+[09/08 16:35:16][WARNING] jit_analysis.py: 490: Unsupported operator aten::add encountered 26 time(s)
+[09/08 16:35:16][WARNING] jit_analysis.py: 490: Unsupported operator aten::avg_pool3d encountered 1 time(s)
+[09/08 16:35:16][WARNING] jit_analysis.py: 490: Unsupported operator aten::softmax encountered 1 time(s)
+[09/08 16:35:16][WARNING] jit_analysis.py: 490: Unsupported operator aten::mean encountered 1 time(s)
+[09/08 16:35:16][INFO] misc.py: 186: Flops: 0.8725915519999999 G
+[09/08 16:35:17][WARNING] jit_analysis.py: 490: Unsupported operator aten::batch_norm encountered 84 time(s)
+[09/08 16:35:17][WARNING] jit_analysis.py: 490: Unsupported operator aten::adaptive_avg_pool3d encountered 15 time(s)
+[09/08 16:35:17][WARNING] jit_analysis.py: 490: Unsupported operator aten::sigmoid encountered 15 time(s)
+[09/08 16:35:17][WARNING] jit_analysis.py: 490: Unsupported operator aten::mul encountered 15 time(s)
+[09/08 16:35:17][WARNING] jit_analysis.py: 490: Unsupported operator aten::add encountered 26 time(s)
+[09/08 16:35:17][WARNING] jit_analysis.py: 490: Unsupported operator aten::avg_pool3d encountered 1 time(s)
+[09/08 16:35:17][WARNING] jit_analysis.py: 490: Unsupported operator aten::softmax encountered 1 time(s)
+[09/08 16:35:17][WARNING] jit_analysis.py: 490: Unsupported operator aten::mean encountered 1 time(s)
+[09/08 16:35:17][INFO] misc.py: 191: Activations: 15.144528 M
+[09/08 16:35:17][INFO] misc.py: 196: nvidia-smi
+Wed Sep  8 16:35:17 2021       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 465.19.01    Driver Version: 465.19.01    CUDA Version: 11.3     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  NVIDIA Quadro R...  Off  | 00000000:3E:00.0 Off |                  Off |
+| 33%   25C    P2    58W / 260W |   1358MiB / 24220MiB |      0%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+|   1  NVIDIA Quadro R...  Off  | 00000000:60:00.0 Off |                  Off |
+| 33%   22C    P8    10W / 260W |      4MiB / 24220MiB |      0%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
++-----------------------------------------------------------------------------+
+[09/08 16:35:17][INFO] checkpoint.py: 489: Unknown way of loading checkpoint. Using with random initialization, only for debugging.
+[09/08 16:35:17][INFO] kinetics.py:  76: Constructing Kinetics test...
+[09/08 16:35:18][INFO] kinetics.py: 123: Constructing kinetics dataloader (size: 121410) from ../kinetics-400-dataset-files/test.csv
+[09/08 16:35:18][INFO] test_net.py: 169: Testing model for 7589 iterations
+[09/08 16:35:18][INFO] tensorboard_vis.py:  54: To see logged results in Tensorboard, please launch using the command             `tensorboard  --port=<port-number> --logdir ./runs-kinetics`
+[09/08 16:35:18][ERROR] video_container.py:  23: channel element 2.0 is not allocated
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 0 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 0
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 0 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 1
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 0 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 2
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 0 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 3
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 0 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 4
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 0 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 5
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 0 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 6
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 0 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 7
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 0 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 8
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 0 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 9
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 1 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 0
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 1 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 1
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 1 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 2
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 1 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 3
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 1 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 4
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 1 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 5
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 1 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 6
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 1 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 7
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 1 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 8
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 1 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 9
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 2 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 0
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 2 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 1
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 2 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 2
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 2 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 3
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 2 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 4
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 2 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 5
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 2 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 6
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 2 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 7
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 2 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 8
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 2 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 9
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 3 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 0
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 3 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 1
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 3 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 2
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 3 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 3
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 3 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 4
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 3 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 5
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 3 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 6
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 3 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 7
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 3 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 8
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 3 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 9
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 4 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 0
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 4 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 1
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 4 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 2
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 4 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 3
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 4 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 4
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 4 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 5
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 4 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 6
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 4 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 7
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 4 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 8
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 4 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 9
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 5 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 0
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 5 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 1
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 5 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 2
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 5 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 3
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 5 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 4
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 5 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 5
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 5 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 6
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 5 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 7
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 5 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 8
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 5 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 9
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 6 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 0
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 6 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 1
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 6 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 2
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 6 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 3
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 6 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 4
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 6 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 5
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 6 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 6
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 6 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 7
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 6 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 8
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 6 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 9
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 7 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 0
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 7 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 1
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 7 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 2
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 7 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 3
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 7 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 4
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 7 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 5
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 7 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 6
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 7 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 7
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 7 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 8
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 7 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 9
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 8 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 0
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 8 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 1
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 8 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 2
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 8 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 3
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 8 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 4
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 8 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 5
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 8 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 6
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 8 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 7
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 8 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 8
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 8 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 9
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 9 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 0
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 9 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 1
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 9 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 2
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 9 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 3
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 9 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 4
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 9 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 5
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 9 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 6
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 9 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 7
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 9 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 8
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 9 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 9
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 10 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 0
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 10 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 1
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 10 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 2
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 10 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 3
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 10 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 4
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 10 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 5
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 10 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 6
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 10 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 7
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 10 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 8
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:18][WARNING] kinetics.py: 251: Failed to decode video idx 10 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 9
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 11 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 0
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 11 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 1
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 11 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 2
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 11 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 3
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 11 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 4
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 11 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 5
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 11 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 6
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 11 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 7
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 11 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 8
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 11 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 9
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 12 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 0
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 12 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 1
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 12 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 2
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 12 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 3
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 12 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 4
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 12 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 5
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 12 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 6
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 12 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 7
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 12 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 8
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 12 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 9
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 13 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 0
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 13 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 1
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 13 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 2
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 13 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 3
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 13 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 4
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 13 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 5
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 13 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 6
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 13 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 7
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 13 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 8
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 13 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 9
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 14 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 0
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 14 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 1
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 14 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 2
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 14 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 3
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 14 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 4
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 14 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 5
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 14 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 6
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 14 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 7
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 14 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 8
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 14 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 9
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 15 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 0
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 15 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 1
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 15 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 2
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 15 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 3
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 15 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 4
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 15 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 5
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 15 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 6
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 15 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 7
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 15 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 8
+Failed to decode by pyav with exception: tuple index out of range
+[09/08 16:35:19][WARNING] kinetics.py: 251: Failed to decode video idx 15 from /home/jovyan/asarjoo/slowfast-adversarial-ml/kinetics-400-dataset-files/val/playing-organ/Cs8Y14ZDigU_000085_000095.mp4; trial 9
+/home/jovyan/asarjoo/slowfast-adversarial-ml/slowfast/slowfast_venv/lib/python3.8/site-packages/torchvision/transforms/_functional_video.py:5: UserWarning: The _functional_video module is deprecated. Please use the functional module instead.
+  warnings.warn(
+/home/jovyan/asarjoo/slowfast-adversarial-ml/slowfast/slowfast_venv/lib/python3.8/site-packages/torchvision/transforms/_transforms_video.py:25: UserWarning: The _transforms_video module is deprecated. Please use the transforms module instead.
+  warnings.warn(
+Traceback (most recent call last):
+  File "tools/run_net.py", line 44, in <module>
+    main()
+  File "tools/run_net.py", line 29, in main
+    launch_job(cfg=cfg, init_method=args.init_method, func=test)
+  File "/home/jovyan/asarjoo/slowfast-adversarial-ml/slowfast/slowfast/utils/misc.py", line 311, in launch_job
+    func(cfg=cfg)
+  File "/home/jovyan/asarjoo/slowfast-adversarial-ml/slowfast/tools/test_net.py", line 200, in test
+    test_meter = perform_test(test_loader, model, test_meter, cfg, writer)
+  File "/home/jovyan/asarjoo/slowfast-adversarial-ml/slowfast/slowfast_venv/lib/python3.8/site-packages/torch/autograd/grad_mode.py", line 28, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/jovyan/asarjoo/slowfast-adversarial-ml/slowfast/tools/test_net.py", line 49, in perform_test
+    for cur_iter, (inputs, labels, video_idx, meta) in enumerate(test_loader):
+  File "/home/jovyan/asarjoo/slowfast-adversarial-ml/slowfast/slowfast_venv/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 521, in __next__
+    data = self._next_data()
+  File "/home/jovyan/asarjoo/slowfast-adversarial-ml/slowfast/slowfast_venv/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 561, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "/home/jovyan/asarjoo/slowfast-adversarial-ml/slowfast/slowfast_venv/lib/python3.8/site-packages/torch/utils/data/_utils/fetch.py", line 47, in fetch
+    return self.collate_fn(data)
+  File "/home/jovyan/asarjoo/slowfast-adversarial-ml/slowfast/slowfast_venv/lib/python3.8/site-packages/torch/utils/data/_utils/collate.py", line 86, in default_collate
+    raise TypeError(default_collate_err_msg_format.format(elem_type))
+TypeError: default_collate: batch must contain tensors, numpy arrays, numbers, dicts or lists; found <class 'NoneType'>

@@ -138,9 +138,9 @@ python3 tools/run_net.py \
         TRAIN.ENABLE False \
         DATA_LOADER.NUM_WORKERS 0 \
         NUM_GPUS 1 \
-        TEST.BATCH_SIZE 16 \
+        TEST.BATCH_SIZE 32 \
         TENSORBOARD.ENABLE True \
-        |& tee "../output_logs/test_results_X3DM_trial1.txt"
+        |& tee "../output_logs/test_results_X3DM_trial2.txt"
 ```
 
 Depending on your hardware configuration, SlowFast might crash during model evaluation, for one of several reasons
@@ -149,7 +149,7 @@ Depending on your hardware configuration, SlowFast might crash during model eval
 ```bash
 RuntimeError: Failed to fetch video after 10 retries.
 ```
-This means that the video was corrupted somehow. The SlowFast docs and the open issues on GitHub don't provide any remedies for this, so it is recommended to delete the file in question from the csv(s) and re-run the script
+This means that the video was corrupted at a specific frame somehow. The SlowFast docs and the open issues on GitHub don't provide any remedies for this, so it is recommended to delete the file in question from the csv(s) and re-run the script
 
 2. In the model evaluation, the `top1_acc` field is always 0 for each epoch
 
